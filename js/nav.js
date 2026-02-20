@@ -921,3 +921,29 @@ audio.volume = volumeSlider.value;
 volumeSlider.addEventListener('input', (e) => {
     audio.volume = e.target.value;
 });
+
+///search
+
+// Selector Search
+const searchInput = document.getElementById('search-input');
+
+// Fungsi Filter Playlist
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    
+    // Buka playlist otomatis kalau lagi ngetik
+    if(searchTerm !== "") {
+        playlistElement.classList.add('active');
+    }
+
+    // Filter playlist item
+    const items = document.querySelectorAll('.playlist-item');
+    items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if(text.includes(searchTerm)) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
+    });
+});
